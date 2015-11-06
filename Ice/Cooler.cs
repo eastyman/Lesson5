@@ -58,7 +58,6 @@ namespace Ice
             }
             else
             {
-                frost = FrostLevel.Warmy;
                 stateMessage = "Режим не меняется, холодильник выключен";
             }
 
@@ -71,7 +70,6 @@ namespace Ice
             }
             else
             {
-                frost = FrostLevel.Warmy;
                 stateMessage = "Режим не меняется, холодильник выключен";
             }
         }
@@ -132,8 +130,6 @@ namespace Ice
                     }
             }
             return "Состояние: " + state + ", уровень холода: " + frostLev + ", количество пива: " + beerQuantity + " " + stateMessage;
-
         }
-
     }
 }
