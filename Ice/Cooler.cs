@@ -6,27 +6,34 @@ namespace Ice
         private bool state;
         private int beerQuantity;
         private FrostLevel frost;
+        private string stateMessage;
         public Cooler(bool state, int beerQuantity, FrostLevel frost)
         {
             this.state = state;
             this.beerQuantity = beerQuantity;
             this.frost = frost;
+            this.stateMessage = " ";
         }
         public void On()
         {
             state = true;
+            stateMessage = " ";
+            frost = FrostLevel.Normal;
         }
 
         public void Off()
         {
             state = false;
+            frost = FrostLevel.Warmy;
         }
 
         public void GetBeers(int quantity)
         {
+
             if (beerQuantity - quantity >= 0)
             {
                 beerQuantity = beerQuantity - quantity;
+                stateMessage = " ";
             }
         }
 
@@ -34,21 +41,47 @@ namespace Ice
         {
 
             beerQuantity = beerQuantity + quantity;
+            stateMessage = " ";
 
         }
 
         public void SetNormalFrost()
         {
-            frost = FrostLevel.Normal;
+            if (state)
+            {
+                frost = FrostLevel.Normal;
+            }
+            else
+            {
+                frost = FrostLevel.Warmy;
+                stateMessage = "Режим не меняется, холодильник выключен";
+            }
+
         }
         public void SetUkrainianWinterFrost()
         {
-            frost = FrostLevel.UkrainianWinter;
+            if (state)
+            {
+                frost = FrostLevel.UkrainianWinter;
+            }
+            else
+            {
+                frost = FrostLevel.Warmy;
+                stateMessage = "Режим не меняется, холодильник выключен";
+            }
         }
 
         public void SetArcticIceFrost()
         {
-            frost = FrostLevel.ArcticIce;
+            if (state)
+            {
+                frost = FrostLevel.ArcticIce;
+            }
+            else
+            { 
+                frost = FrostLevel.Warmy;
+                stateMessage = "Режим не меняется, холодильник выключен";
+            }
         }
 
         public string Info()
@@ -87,8 +120,13 @@ namespace Ice
                         frostLev = "Продукты превратились в лёд";
                         break;
                     }
+                case FrostLevel.Warmy:
+                    {
+                        frostLev = "Продукты медленно но уверенно подогреваются";
+                        break;
+                    }
             }
-            return "Состояние: " + state + ", уровень холода: " + frostLev + ", количество пива: " + beerQuantity;
+            return "Состояние: " + state + ", уровень холода: " + frostLev + ", количество пива: " + beerQuantity + " " + stateMessage;
 
         }
 
