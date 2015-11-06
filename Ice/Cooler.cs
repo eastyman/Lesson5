@@ -82,7 +82,6 @@ namespace Ice
             }
             else
             { 
-                frost = FrostLevel.Warmy;
                 stateMessage = "Режим не меняется, холодильник выключен";
             }
         }
