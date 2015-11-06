@@ -49,11 +49,13 @@ namespace Ice
                     case '7':
                         CoolerLG.Off();
                         break;
-                    case 'e':                                             
+                    case 'e':
+                    case 'E':
+                    case 'е':
+                    case 'Е':
                         return;
                 }
-            }
-            //bla-bla
+            }            
         }
     }
 }

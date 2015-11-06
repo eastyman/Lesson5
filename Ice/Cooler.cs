@@ -16,9 +16,13 @@ namespace Ice
         }
         public void On()
         {
-            state = true;
-            stateMessage = " ";
-            frost = FrostLevel.Normal;
+            if (!state)
+            {
+                state = true;
+                stateMessage = " ";
+                frost = FrostLevel.Normal;
+            }
+            
         }
 
         public void Off()
@@ -35,6 +39,7 @@ namespace Ice
                 beerQuantity = beerQuantity - quantity;
                 stateMessage = " ";
             }
+            
         }
 
         public void PutBeers(int quantity)
